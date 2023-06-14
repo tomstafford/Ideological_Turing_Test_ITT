@@ -1,0 +1,31 @@
+- topic: "vaccine"
+  filedetails:
+  - filename: "hes_ratings"
+    arguer_pos: "ANTI"
+    argument_pos: "Against"
+  - filename: "pro_ratings"
+    arguer_pos: "PRO"
+    argument_pos: "For"
+  stanley: false
+
+- topic: "brexit"
+  filedetails:
+  - filename: "leave_ratings"
+    arguer_pos: "PRO"
+    argument_pos: "Remain"
+  - filename: "remain_ratings"
+    arguer_pos: "ANTI"
+    argument_pos: "Remain"
+  stanley: true
+
+- topic: "veganism"
+  filedetails:
+  - filename: "vegan_ratings"
+    arguer_pos: "PRO"
+    argument_pos: "Against"
+  - filename: "nonVegan_ratings"
+    arguer_pos: "ANTI"
+    argument_pos: "Against"
+  stanley: true
+
+
