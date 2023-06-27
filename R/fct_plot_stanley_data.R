@@ -1,10 +1,10 @@
-source("analysis/R/utils.R")
+source("R/utils.R")
 library(tidyr)
 library(rethinking)
 library(ggplot2)
 
-load_model <- function(model_name, indir = "analysis/data/model_fits/") {
-  files <- list.files(path = indir, pattern = model_name, full.names = TRUE)
+load_model <- function(model_name, in_dir = "data/model_fits/") {
+  files <- list.files(path = in_dir, pattern = model_name, full.names = TRUE)
   load(files)
   assign("model", get(model_name))
   return(model)
@@ -109,10 +109,13 @@ make_rating_plot <- function(topic_name, pInit_df) {
 }
 
 save_plot <- function(plot, model_name, plot_type, config,
-                      out_dir = "analysis/plots/stanley_plots/") {
+                      output_dir = "plots/stanley_plots/") {
   
   out_name <- paste(model_name, plot_type, sep = "_")
-  out_path <- gen_file_path(out_dir, out_name, ".png")
+  out_path <- gen_file_path(output_dir, out_name, ".png")
+  
+  if (!dir.exists(output_dir)) dir.create(output_dir)
+  
   file_output <- config$file_output
   ggsave(out_path, plot = plot,
          width = file_output$width,
