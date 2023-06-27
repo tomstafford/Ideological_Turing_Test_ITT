@@ -25,6 +25,6 @@ There is an optional 4th step (`04_shiny_data.R`), which prepares the data for u
 
 ## Analysis
 
-After the ITT and Baseline Conditions were created, means were calculated, assumptions were checked, Likert answers were converted to 1-7 scales, and smaller dataframes created ready for analysis.
+After the ITT and Baseline Conditions were created, Likert answers were converted to 1-7 scales and wide/long dataframes created ready for each analysis as relevant.
 
-Analyses of the Likert Scale ratings were conducted using ordinal logistic models using Richard McElreath's Rethinking package (2018)
+Analyses of the Likert Scale ratings were conducted using multi-level ordinal logistic models using Richard McElreath's Rethinking package (2018). 
