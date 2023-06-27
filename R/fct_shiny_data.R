@@ -1,10 +1,10 @@
-source("analysis/R/utils.R")
+source("R/utils.R")
 
 prep_shiny_data <- function(label_in,
-                           indir = "analysis/data/split_data/",
-                           outdir = "analysis/data/shiny_data/") {
+                           in_dir = "data/split_data/",
+                           output_dir = "data/shiny_data/") {
   
-  files <- list.files(indir, label_in, full.names = TRUE)
+  files <- list.files(in_dir, label_in, full.names = TRUE)
   
   full_data <- purrr::list_rbind(
     purrr::map(files, read_csv, col_types = get_colspec())
@@ -12,7 +12,9 @@ prep_shiny_data <- function(label_in,
   
   wrangled_data <- wrangle_split_data(full_data)
   
-  outpath <- gen_file_path(outdir, label_in, "_shiny.csv")
+  outpath <- gen_file_path(output_dir, label_in, "_shiny.csv")
+  
+  if (!dir.exists(output_dir)) dir.create(output_dir)
   
   write_csv(wrangled_data, outpath)
 }
