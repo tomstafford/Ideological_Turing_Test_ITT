@@ -1,4 +1,6 @@
-source("analysis/R/utils.R")
+source("R/utils.R")
+library(ggplot2)
+library(ggdist)
 
 summarise_data <- function(data_in){
   
@@ -78,21 +80,26 @@ create_plot <- function(topic, orig_data, config){
 }
 
 plot_data <- function(topic, config,
-                      indir = "analysis/data/shiny_data/",
-                      outdir = "analysis/plots/rater_summaries/",
+                      in_dir = "data/shiny_data/",
+                      output_dir = "plots/rater_summaries/",
                       save = TRUE){
   # Load Data
-  files <- list.files(path = indir, pattern = topic$title, full.names = TRUE)
+  files <- list.files(path = in_dir, pattern = topic$title, full.names = TRUE)
   shiny_data <- read_csv(files, show_col_types = FALSE)
   
   topic_plot <- create_plot(topic, shiny_data, config)
   
   # Save plot
   out_name <- paste(topic$title, "rater_summary", sep = "_")
-  out_path <- gen_file_path(outdir, out_name, ".png")
+  out_path <- gen_file_path(output_dir, out_name, ".png")
+  
+  
   
   file_output <- config$file_output
   if (save){
+    
+    if (!dir.exists(output_dir)) dir.create(output_dir)
+    
     ggsave(out_path, plot = topic_plot,
            width = file_output$width,
            height = file_output$height,
