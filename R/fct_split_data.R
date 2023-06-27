@@ -1,4 +1,4 @@
-source("analysis/R/utils.R")
+source("R/utils.R")
 
 split_data <- function(topic) {
   
@@ -12,7 +12,7 @@ split_data <- function(topic) {
 }
 
 load_cleaned_data <- function(topic,
-                              filepath = "analysis/data/cleaned_data/") {
+                              filepath = "data/cleaned_data/") {
   
   fullpath <- gen_file_path(filepath, topic, "_ratings.csv")
   
@@ -32,7 +32,7 @@ assign_conditions <- function(data_in) {
 }
 
 filter_and_save <- function(filter_cond, data_in, topic,
-                            out_dir = "analysis/data/split_data") {
+                            output_dir = "data/split_data") {
   
   filtered_data <- filter(data_in, condition == filter_cond)
   
@@ -46,9 +46,11 @@ filter_and_save <- function(filter_cond, data_in, topic,
                              response_ratings <= 5 ~ 0
                            ))
   
-  outpath <- gen_file_path(out_dir,
+  outpath <- gen_file_path(output_dir,
                            paste(topic, filter_cond, sep = "_"),
                            "DataFrame.csv")
+  
+  if (!dir.exists(output_dir)) dir.create(output_dir)
   
   write_csv(add_passed_col, outpath)
   
