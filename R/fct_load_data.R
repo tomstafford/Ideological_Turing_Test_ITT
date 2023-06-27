@@ -1,10 +1,12 @@
 library(stringr)
-source("analysis/R/utils.R")
+source("R/utils.R")
 
-process_all_files <- function(details, output_dir = "analysis/data/loaded_data"){
+process_all_files <- function(details,
+                              input_dir = "data/raw",
+                              output_dir = "data/loaded_data"){
 
   # Separate out details  
-  data_paths <- details$path
+  data_paths <- file.path(input_dir, details$path)
   raters <- details$raters
   arguer <- details$arguer
   
@@ -21,6 +23,9 @@ process_all_files <- function(details, output_dir = "analysis/data/loaded_data")
   argument_ratings <- mutate(argument_ratings,
                              response_ratings = recode_lickert(Response),
                              arg_ID = as.numeric(arg_ID))
+  
+  # Create output_dir if it doesn't already exist
+  if (!dir.exists(output_dir)) dir.create(output_dir)
   
   # Write loaded data
   write_csv(argument_ratings, output_path)
