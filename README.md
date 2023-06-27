@@ -1,6 +1,6 @@
 # The Ideological Turing Test: a behavioural measure of open-mindedness and perspective-taking 
 
-This directory contains the data, pre-processing scripts and analysis scripts accompanying the paper (which can be found [here]())
+This directory contains the data, pre-processing scripts and analysis scripts accompanying the paper (which can be found [here](https://psyarxiv.com/2e9wn))
 
 ## Pre-requisites
 
@@ -32,7 +32,7 @@ This consists of 3 steps:
 
 After the ITT and Baseline Conditions were created, Likert answers were converted to 1-7 scales and wide/long dataframes created ready for each analysis as relevant.
 
-Analyses of the Likert Scale ratings were conducted using multi-level ordinal logistic models using Richard McElreath's Rethinking package (2018). The scripts for these analyses can be found in the `analysis` directory.
+Analyses of the Likert Scale ratings were conducted using multi-level ordinal logistic models using Richard McElreath's Rethinking package (2018). The scripts for these analyses are named `04_*_analysis_script.R`, where the star represents the topic.
 
 ## Plots
 
