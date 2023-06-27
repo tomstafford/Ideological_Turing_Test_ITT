@@ -30,9 +30,9 @@ This consists of 3 steps:
     
 ## Analysis
 
-After the ITT and Baseline Conditions were created, means were calculated, assumptions were checked, Likert answers were converted to 1-7 scales, and smaller dataframes created ready for analysis.
+After the ITT and Baseline Conditions were created, Likert answers were converted to 1-7 scales and wide/long dataframes created ready for each analysis as relevant.
 
-Analyses of the Likert Scale ratings were conducted using ordinal logistic models using Richard McElreath's Rethinking package (2018). The scripts for these analyses can be found in the `analysis` directory.
+Analyses of the Likert Scale ratings were conducted using multi-level ordinal logistic models using Richard McElreath's Rethinking package (2018). The scripts for these analyses can be found in the `analysis` directory.
 
 ## Plots
 
