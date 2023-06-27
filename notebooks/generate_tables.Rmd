@@ -1,5 +1,5 @@
 ---
-title: "Analysis Notebook"
+title: "Stanley tables"
 output:
   html_document:
     df_print: paged
@@ -10,7 +10,7 @@ knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 
 
 ```{r load functions, message=FALSE}
-source("analysis/R/fct_plot_stanley_data.R")
+source("R/fct_plot_stanley_data.R")
 library(dplyr)
 ```
 
