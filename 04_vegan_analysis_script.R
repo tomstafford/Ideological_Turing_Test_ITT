@@ -1,3 +1,9 @@
+library(rethinking)
+source("R/fct_analysis.R")
+
+ITTdata <- load_data("veganism")
+ITTdata <- lickert_to_numeric(ITTdata, "stan")
+
 # Analysis script for vegan topic 
 
 # The below analyses are included in the preregistration of the paper: https://osf.io/uz9ge
@@ -178,6 +184,8 @@ precis(model3_passedITT)
 # 
 ##### STANLEY MODELS: Are stanley measures of open mindedness predicted by passing the ITT? #####
 
+ITTdata <- mutate(ITTdata, stanley_ratings = reasoning_stan)
+
 model_stanley1 <- map2stan(
   alist(
     stanley_ratings ~ dordlogit(phi, cutpoints),
@@ -221,6 +229,8 @@ model_stanley2 <- map2stan(
 precis(model_stanley2)
 
 ###### MORALITY MODELS: Are your ratings of opponents' morality higher/lower if you pass the ITT? ##### 
+
+morality_frame <- wide_to_long(ITTdata, "morality", "moral_Q", "morality_ratings")
 
 morality1 <- map2stan(
   alist(
@@ -276,6 +286,8 @@ saveRDS(morality2, "vegan_morality_relativeITT.RDS")
 # 
 
 ##### INTELLECT MODELS: Are your ratings of opponents' intellect higher/lower if you pass the ITT? #####
+
+intellect_frame <- wide_to_long(ITTdata, "intellect", "intellect_Q", "intellect_ratings")
 
 intellect1 <- map2stan(
   alist(

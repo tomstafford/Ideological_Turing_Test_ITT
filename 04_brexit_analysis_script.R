@@ -1,3 +1,9 @@
+library(rethinking)
+source("R/fct_analysis.R")
+
+ITTdata <- load_data("brexit")
+ITTdata <- lickert_to_numeric(ITTdata, "stan")
+
 # Analysis script for brexit topic 
 
 # The below analyses are included in the preregistration of the paper: https://osf.io/uz9ge
@@ -175,6 +181,8 @@ precis(model3_relativeITT)
 
 ##### STANLEY MODELS: Are stanley measures of open mindedness predicted by passing the ITT? #####
 
+ITTdata <- mutate(ITTdata, stanley_ratings = reasoning_stan)
+
 model_stanley1 <- map2stan(
   alist(
     stanley_ratings ~ dordlogit(phi, cutpoints),
@@ -199,6 +207,7 @@ precis(model_stanley1)
 
 ###### MORALITY MODELS: Are your ratings of opponents' morality higher/lower if you pass the ITT? ##### 
 
+morality_frame <- wide_to_long(ITTdata, "morality", "moral_Q", "morality_ratings")
 
 morality1 <- map2stan(
    alist(
@@ -225,6 +234,8 @@ precis(morality1)
 # sigma_q  0.11 0.05  0.05  0.19   888 1.00
 
 ##### INTELLECT MODELS: Are your ratings of opponents' intellect higher/lower if you pass the ITT? #####
+
+intellect_frame <- wide_to_long(ITTdata, "intellect", "intellect_Q", "intellect_ratings")
 
 intellect1 <- map2stan(
   alist(

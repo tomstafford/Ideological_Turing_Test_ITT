@@ -1,3 +1,8 @@
+library(rethinking)
+source("R/fct_analysis.R")
+
+ITTdata <- load_data("vaccine")
+
 # Analysis script for brexit topic 
 
 # The below analyses are included in the preregistration of the paper: https://osf.io/uz9ge
