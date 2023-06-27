@@ -1,0 +1,220 @@
+---
+title: "Stanley tables"
+output:
+  html_document:
+    df_print: paged
+---
+```{r setup}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+```
+
+
+```{r load functions, message=FALSE}
+source("R/fct_plot_stanley_data.R")
+library(dplyr)
+```
+
+# Estimates for brexit_intellect model 
+
+## Generate samples
+```{r generate samples for bi}
+model_name <- "brexit_intellect"
+model_bi <- load_model(model_name)
+bi_samples <- generate_samples(model_bi)
+bi_sample_tidy <- tidy_samples(bi_samples) 
+```
+
+## Prep tables
+
+```{r summarise samples bi}
+summ_bi <- group_by(bi_sample_tidy, rating, ITTPass) %>%
+  summarise(mean_pk = mean(pk), .groups = "drop") %>%
+  group_by(ITTPass) %>% arrange(ITTPass) %>%
+  mutate(cum_mean_pk = cumsum(mean_pk))
+
+abs_prob_bi <- pivot_wider(summ_bi, id_cols = ITTPass, names_from = rating, values_from = mean_pk)
+cum_prob_bi <- pivot_wider(summ_bi, id_cols = ITTPass, names_from = rating, values_from = cum_mean_pk)
+```
+
+## Absolute probability table
+
+```{r}
+knitr::kable(abs_prob_bi)
+```
+
+## Cumulative probability table
+
+```{r}
+knitr::kable(cum_prob_bi)
+```
+
+
+# Estimates for brexit_morality model 
+
+## Generate samples
+```{r generate samples for bm}
+model_name <- "brexit_morality"
+model_bm <- load_model(model_name)
+bm_samples <- generate_samples(model_bm)
+bm_sample_tidy <- tidy_samples(bm_samples) 
+```
+
+## Prep tables
+
+```{r summarise samples bm}
+summ_bm <- group_by(bm_sample_tidy, rating, ITTPass) %>%
+  summarise(mean_pk = mean(pk), .groups = "drop") %>%
+  group_by(ITTPass) %>% arrange(ITTPass) %>%
+  mutate(cum_mean_pk = cumsum(mean_pk))
+
+abs_prob_bm <- pivot_wider(summ_bm, id_cols = ITTPass, names_from = rating, values_from = mean_pk)
+cum_prob_bm <- pivot_wider(summ_bm, id_cols = ITTPass, names_from = rating, values_from = cum_mean_pk)
+```
+
+## Absolute probability table
+
+```{r}
+knitr::kable(abs_prob_bm)
+```
+
+## Cumulative probability table
+
+```{r}
+knitr::kable(cum_prob_bm)
+```
+
+# Estimates for vegan_morality_absolute model 
+
+## Generate samples
+```{r generate samples for vm}
+model_name <- "vegan_morality_abs"
+model_vm <- load_model(model_name)
+vm_samples <- generate_samples(model_vm)
+vm_sample_tidy <- tidy_samples(vm_samples) 
+```
+
+## Prep tables
+
+```{r summarise samples vm}
+summ_vm <- group_by(vm_sample_tidy, rating, ITTPass) %>%
+  summarise(mean_pk = mean(pk), .groups = "drop") %>%
+  group_by(ITTPass) %>% arrange(ITTPass) %>%
+  mutate(cum_mean_pk = cumsum(mean_pk))
+
+abs_prob_vm <- pivot_wider(summ_vm, id_cols = ITTPass, names_from = rating, values_from = mean_pk)
+cum_prob_vm <- pivot_wider(summ_vm, id_cols = ITTPass, names_from = rating, values_from = cum_mean_pk)
+```
+
+## Absolute probability table
+
+```{r}
+knitr::kable(abs_prob_vm)
+```
+
+## Cumulative probability table
+
+```{r}
+knitr::kable(cum_prob_vm)
+```
+# Estimates for vegan_stanley_relative model 
+
+## Generate samples
+```{r generate samples for vsr}
+model_name <- "vegan_stanley_rel"
+model_vsr <- load_model(model_name)
+vsr_samples <- generate_samples(model_vsr)
+vsr_sample_tidy <- tidy_samples(vsr_samples) 
+```
+
+## Prep tables
+
+```{r summarise samples vsr}
+summ_vsr <- group_by(vsr_sample_tidy, rating, ITTPass) %>%
+  summarise(mean_pk = mean(pk), .groups = "drop") %>%
+  group_by(ITTPass) %>% arrange(ITTPass) %>%
+  mutate(cum_mean_pk = cumsum(mean_pk))
+
+abs_prob_vsr <- pivot_wider(summ_vsr, id_cols = ITTPass, names_from = rating, values_from = mean_pk)
+cum_prob_vsr <- pivot_wider(summ_vsr, id_cols = ITTPass, names_from = rating, values_from = cum_mean_pk)
+```
+
+## Absolute probability table
+
+```{r}
+knitr::kable(abs_prob_vsr)
+```
+
+## Cumulative probability table
+
+```{r}
+knitr::kable(cum_prob_vsr)
+```
+
+# Estimates for vegan_morality_relative model 
+
+## Generate samples
+```{r generate samples for vmr}
+model_name <- "vegan_morality_rel"
+model_vmr <- load_model(model_name)
+vmr_samples <- generate_samples(model_vmr)
+vmr_sample_tidy <- tidy_samples(vmr_samples) 
+```
+
+## Prep tables
+
+```{r summarise samples vmr}
+summ_vmr <- group_by(vmr_sample_tidy, rating, ITTPass) %>%
+  summarise(mean_pk = mean(pk), .groups = "drop") %>%
+  group_by(ITTPass) %>% arrange(ITTPass) %>%
+  mutate(cum_mean_pk = cumsum(mean_pk))
+
+abs_prob_vmr <- pivot_wider(summ_vmr, id_cols = ITTPass, names_from = rating, values_from = mean_pk)
+cum_prob_vmr <- pivot_wider(summ_vmr, id_cols = ITTPass, names_from = rating, values_from = cum_mean_pk)
+```
+
+## Absolute probability table
+
+```{r}
+knitr::kable(abs_prob_vmr)
+```
+
+## Cumulative probability table
+
+```{r}
+knitr::kable(cum_prob_vmr)
+```
+
+# Estimates for vegan_intellect_relative model 
+
+## Generate samples
+```{r generate samples for vir}
+model_name <- "vegan_intellect_rel"
+model_vir <- load_model(model_name)
+vir_samples <- generate_samples(model_vir)
+vir_sample_tidy <- tidy_samples(vir_samples) 
+```
+
+## Prep tables
+
+```{r summarise samples vir}
+summ_vir <- group_by(vir_sample_tidy, rating, ITTPass) %>%
+  summarise(mean_pk = mean(pk), .groups = "drop") %>%
+  group_by(ITTPass) %>% arrange(ITTPass) %>%
+  mutate(cum_mean_pk = cumsum(mean_pk))
+
+abs_prob_vir <- pivot_wider(summ_vir, id_cols = ITTPass, names_from = rating, values_from = mean_pk)
+cum_prob_vir <- pivot_wider(summ_vir, id_cols = ITTPass, names_from = rating, values_from = cum_mean_pk)
+```
+
+## Absolute probability table
+
+```{r}
+knitr::kable(abs_prob_vir)
+```
+
+## Cumulative probability table
+
+```{r}
+knitr::kable(cum_prob_vir)
+```
+

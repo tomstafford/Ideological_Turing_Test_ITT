@@ -1,0 +1,32 @@
+topics:
+- title: "brexit"
+  positions: ["Leave", "Remain"]
+- title: "vaccine"
+  positions: ["For Vaccines", "Against Vaccines"]
+- title: "veganism"
+  positions: ["Vegan", "Non-Vegan"]
+
+plot_config:
+  colours:
+    Pro: 'moccasin'
+    Anti: 'lightsteelblue2'
+  histograms:
+    side: 'left'
+    justification: 1.05
+  errorbar:
+    width: .05
+  points:
+    size: 2.5
+    shape: 21
+  
+  ylab: "Agreement Rating"
+  xlab: "Argument Position"
+  legendLab: "Relative criteria"
+  lineLab: "Absolute criteria"
+  
+  # These output options correspond to the ones in the ggsave docs
+  file_output:
+    width: 8
+    height: 5
+    units: "in"
+    dpi: "print"

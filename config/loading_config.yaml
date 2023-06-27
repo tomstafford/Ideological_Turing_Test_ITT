@@ -1,0 +1,50 @@
+# Veganism
+- arguer: vegan
+  raters:
+  - VEGAN
+  - Non_vegan
+  path:
+  - vegan_vegan_RATINGS
+  - VArgs_NvRatings
+
+- arguer: nonVegan
+  raters:
+  - Vegan
+  - NONvegan
+  path:
+  - NvArgs_VRatings
+  - Nv_Nv_RATINGS
+
+# Brexit
+- arguer: leave
+  raters:
+  - LEAVE
+  - REMAIN
+  path:
+  - Lev_Lev_RATINGS
+  - Lev_Rem_RATINGS
+
+- arguer: remain
+  raters:
+  - LEAVE
+  - REMAIN
+  path:
+  - Rem_Lev_RATINGS
+  - RemRemRatings
+
+# Vaccines
+- arguer: hes
+  raters:
+  - Hesitant
+  - Pro
+  path:
+  - HesHesRatings
+  - HesProRatings
+
+- arguer: pro
+  raters:
+  - Hesitant
+  - Pro
+  path:
+  - ProHesRatings
+  - ProProRatings
