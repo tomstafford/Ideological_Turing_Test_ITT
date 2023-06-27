@@ -1,4 +1,4 @@
-source("analysis/R/utils.R")
+source("R/utils.R")
 
 stanley_regex <- c("^stan.*$",
                    "^int.*_1$", "^int.*_2$", "^int.*_3$",
@@ -13,7 +13,7 @@ stanley_newname <- c("reasoning_stan",
                      "morality_stan_3")
 
 # Load data
-load_dataset <- function(details, output_dir = "analysis/data/cleaned_data/") {
+load_dataset <- function(details, output_dir = "data/cleaned_data/") {
   
   # Get details from list
   topic_name <- details$topic
@@ -53,11 +53,13 @@ load_dataset <- function(details, output_dir = "analysis/data/cleaned_data/") {
   
   output_path = gen_file_path(output_dir, topic_name, "_ratings.csv")
   
+  if (!dir.exists(output_dir)) dir.create(output_dir)
+  
   write_csv(full_data, output_path)
   
 }
 
-load_datafile <- function(details, filepath = "analysis/data/loaded_data/") {
+load_datafile <- function(details, filepath = "data/loaded_data/") {
   
   # Extract details
   filename <- details$filename
