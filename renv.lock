@@ -292,6 +292,12 @@
       "Hash": "15e9634c0fcd294799e9b2e929ed1b86",
       "Requirements": []
     },
+    "ggdist": {
+      "Package": "ggdist",
+      "Version": "3.2.1",
+      "Source": "Repository",
+      "Requirements": []
+    },
     "ggeasy": {
       "Package": "ggeasy",
       "Version": "0.1.4",

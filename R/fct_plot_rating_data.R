@@ -5,7 +5,7 @@ library(ggdist)
 summarise_data <- function(data_in){
   
   data_out <- data_in %>%
-    group_by(argument_position) %>%
+    group_by(argument_Position) %>%
     summarise(mean_rating = mean(response_ratings),
               sd_rating = sd(response_ratings),
               .groups = "drop")
@@ -45,8 +45,8 @@ create_plot <- function(topic, orig_data, config){
   
   # Plot the data
   plot_out <- ggplot(data = itt_data,
-                     mapping = aes(x = argument_position)) +
-    stat_histinterval(aes(y = response_ratings, fill = argument_position),
+                     mapping = aes(x = argument_Position)) +
+    stat_histinterval(aes(y = response_ratings, fill = argument_Position),
                       normalize = "none", slab_color = "white",
                       outline_bars = TRUE, show.legend = F,
                       breaks = seq(from = 0.5, to = 7.5, by = 1),
@@ -56,14 +56,14 @@ create_plot <- function(topic, orig_data, config){
                   aes(ymin = mean_rating - sd_rating,
                       ymax = mean_rating + sd_rating),
                   width = eb_width) +
-    geom_point(data = itt_summ, aes(y = mean_rating, fill = argument_position),
+    geom_point(data = itt_summ, aes(y = mean_rating, fill = argument_Position),
                size = pt_size, shape = pt_shape, show.legend = FALSE) +
     geom_hline(yintercept = 6, linetype = 'dotdash', color = 'black') +
     annotate("text", x = 0, y = 5.5, label = lineLab, colour = "black",
              hjust = -0.1, vjust = -0.5) +
     stat_summary(data = baseline_data,
-                 mapping = aes(colour = argument_position,
-                               x = argument_position,
+                 mapping = aes(colour = argument_Position,
+                               x = argument_Position,
                                y = response_ratings),
                  fun = "mean", geom = "crossbar",
                  linetype='dashed', key_glyph = "smooth") +
@@ -80,7 +80,7 @@ create_plot <- function(topic, orig_data, config){
 }
 
 plot_data <- function(topic, config,
-                      in_dir = "data/shiny_data/",
+                      in_dir = "data/split_data/",
                       output_dir = "plots/rater_summaries/",
                       save = TRUE){
   # Load Data
