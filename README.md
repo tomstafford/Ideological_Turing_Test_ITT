@@ -39,7 +39,7 @@ Analyses of the Likert Scale ratings were conducted using multi-level ordinal lo
 Two different plots are associated with this project:
 
 1. __'Rating' plots__ - These plots show the distribution of ratings for the ITT condition in each topic, and can be generated with `05a_plot_rating_data.R`.
-2. __'Stanley' plots__ - These plots show the absolute and cumulative probability of giving a particular ordinal response having either passed or failed the ITT, as well as the 'average' rating for the pass/fail ITT conditions. They can be generated using the `05a_plot_stanley_data.R` scripts, but need `rethinking` installed to work.
+2. __'Stanley' plots__ - These plots show the absolute and cumulative probability of giving a particular ordinal response having either passed or failed the ITT, as well as the 'average' rating for the pass/fail ITT conditions. They can be generated using the `05b_plot_stanley_data.R` scripts, but need `rethinking` installed to work.
 
 ## Tables
 
