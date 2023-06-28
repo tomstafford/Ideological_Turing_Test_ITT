@@ -2,6 +2,7 @@ library(rethinking)
 source("R/fct_analysis.R")
 
 ITTdata <- load_data("vaccine")
+ITTdata <- dichot_read_discuss(ITTdata)
 
 # Analysis script for brexit topic 
 

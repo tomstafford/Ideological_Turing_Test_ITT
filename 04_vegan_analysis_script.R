@@ -3,6 +3,7 @@ source("R/fct_analysis.R")
 
 ITTdata <- load_data("veganism")
 ITTdata <- lickert_to_numeric(ITTdata, "stan")
+ITTdata <- dichot_read_discuss(ITTdata)
 
 # Analysis script for vegan topic 
 
