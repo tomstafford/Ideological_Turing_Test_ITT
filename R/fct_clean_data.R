@@ -43,6 +43,8 @@ load_dataset <- function(details, output_dir = "data/cleaned_data/") {
     "veganism" = recode_vegan(full_data)
   )
   
+  full_data <- mutate(full_data, arguer_id_full = sprintf('%03i_%s', ARGUER_ID, Arguer_Position))
+  
   if (clean_stanley){
     for (idx in seq_along(stanley_regex)){
       full_data <- process_stanley(stanley_regex[idx],
