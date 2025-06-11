@@ -24,6 +24,15 @@ process_all_files <- function(details,
                              response_ratings = recode_lickert(Response),
                              arg_ID = as.numeric(arg_ID))
   
+  if (any(stringr::str_detect(colnames(argument_ratings), "_conf"))) {
+    argument_ratings <- rename(argument_ratings, position_conf = ends_with("_conf"))
+  } else {
+    argument_ratings <- mutate(argument_ratings, position_conf = NA_character_)
+  }
+  
+  argument_ratings <- mutate(argument_ratings,
+                             position_conf_num = recode_conf_lickert(position_conf))
+  
   # Create output_dir if it doesn't already exist
   if (!dir.exists(output_dir)) dir.create(output_dir)
   
@@ -76,7 +85,8 @@ col_selection <- function() {
            "Arg_Position", "Arguments")),
     starts_with("stan"),
     starts_with("intellectual"),
-    starts_with("morality"))
+    starts_with("morality"),
+    ends_with("_conf"))
   
   return(keep_cols)
   

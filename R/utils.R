@@ -12,6 +12,19 @@ recode_lickert <- function(response) {
             response == "Strongly Disagree" ~ 1)
 }
 
+recode_conf_lickert <- function(conf_response) {
+  response <- stringr::str_to_lower(conf_response)
+  
+  case_when(response == "very confident" ~ 7,
+            response == "confident" ~ 6,
+            response == "somewhat confident" ~ 5,
+            response == "undecided" ~ 4,
+            response == "somewhat doubtful" ~ 3,
+            response == "doubtful" ~ 2,
+            response == "very doubtful" ~ 1)
+}
+
+
 # Specify types for specific cols to constrain importing
 col_types <- function() {
   cols(age = col_character(),
